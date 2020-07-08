@@ -4,12 +4,12 @@ import { SearchBar } from "./SearchBar";
 import { BreedList } from "./BreedList";
 import { Paper } from "@material-ui/core";
 
-export const ListColumn = observer(({ breeds }) => {
+export const ListColumn = observer(() => {
   return (
     <div>
       <Paper className="columns">
         <SearchBar />
-        <BreedList breeds={breeds} />
+        <BreedList />
       </Paper>
     </div>
   );

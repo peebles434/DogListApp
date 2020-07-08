@@ -5,8 +5,12 @@ import { useMainStore } from "../Stores/hooks";
 import { Paper } from "@material-ui/core";
 
 export const PictureColumn = observer(() => {
-  const { currentBreed, setIsPicColumnLoading } = useMainStore();
-  const [pictures, setPictures] = useState([]);
+  const {
+    currentBreed,
+    setIsPicColumnLoading,
+    pictures,
+    setPictures,
+  } = useMainStore();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -14,7 +18,6 @@ export const PictureColumn = observer(() => {
       const result = await axios(
         `https://dog.ceo/api/breed/${currentBreed}/images`
       );
-      console.log(result.data.message);
       setPictures(result.data.message);
       setIsPicColumnLoading(false);
     };

@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const BreedList = observer(({ breeds }) => {
+export const BreedList = observer(() => {
   const classes = useStyles();
-  const { isLoading, breedClickHandler } = useMainStore();
+  const { isLoading, breedClickHandler, breeds } = useMainStore();
 
   const clickHandler = (breed) => (event) => {
     breedClickHandler(breed);

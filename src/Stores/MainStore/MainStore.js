@@ -8,6 +8,8 @@ export const MainStore = types
     isListColumnLoading: types.optional(types.boolean, false),
     isPicColumnLoading: types.optional(types.boolean, false),
     currentBreed: types.optional(types.string, ""),
+    pictures: types.optional(types.array(types.string), []),
+    breeds: types.optional(types.array(types.string), []),
   })
   .volatile((self) => ({}))
   .views((self) => ({}))
@@ -24,5 +26,11 @@ export const MainStore = types
     },
     setIsPicColumnLoading(value) {
       self.isPicColumnLoading = value;
+    },
+    setPictures(value) {
+      self.pictures = value;
+    },
+    setBreeds(value) {
+      self.breeds = value;
     },
   }));
