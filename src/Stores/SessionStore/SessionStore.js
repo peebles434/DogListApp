@@ -13,4 +13,7 @@ export const SessionStore = types
         ? (self.isMobileModeOn = false)
         : (self.isMobileModeOn = true);
     },
+    setMobileMode(value) {
+      self.isMobileModeOn = value;
+    },
   }));

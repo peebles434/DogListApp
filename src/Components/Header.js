@@ -1,6 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
 import { useSessionStore } from "../Stores/hooks";
+import { NavMenu } from "../Components/NavMenu";
 import {
   makeStyles,
   AppBar,
@@ -25,23 +27,18 @@ const useStyles = makeStyles((theme) => ({
 
 export const Header = observer(() => {
   const classes = useStyles();
+  const history = useHistory();
   const { toggleMobileMode, isMobileModeOn } = useSessionStore();
 
   const clickHandler = () => {
     toggleMobileMode();
+    isMobileModeOn ? history.push("/") : history.push("/mobile");
   };
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
+        <NavMenu />
         <Typography variant="h6" className={classes.title}>
           Dog Breed App
         </Typography>

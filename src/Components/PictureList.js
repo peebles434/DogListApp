@@ -12,7 +12,7 @@ export const PictureList = observer(() => {
   const { isMobileModeOn } = useSessionStore();
 
   const clickHandler = () => {
-    history.push("/");
+    history.push("/mobile");
   };
 
   return isPicColumnLoading ? (

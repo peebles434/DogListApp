@@ -33,7 +33,7 @@ export const BreedList = observer(() => {
   const clickHandler = (breed) => (event) => {
     breedClickHandler(breed);
     if (isMobileModeOn) {
-      history.push("/pictures");
+      history.push("/mobile/pictures");
     }
   };
 
