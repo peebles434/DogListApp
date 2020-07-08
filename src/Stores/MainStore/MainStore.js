@@ -2,6 +2,7 @@ import { types, flow } from "mobx-state-tree";
 import { MAIN_STORE } from "../constants";
 import { BreedModel } from "../../Models/BreedModel/BreedModel";
 import { findThumbnail } from "../../Logic/findThumbNail";
+import axios from "axios";
 
 export const MainStore = types
   .model(MAIN_STORE, {
@@ -40,15 +41,24 @@ export const MainStore = types
     setPictures(value) {
       self.pictures = value;
     },
-    setBreeds: flow(function* (values) {
-      if (values) {
-        for (let i = 0; i < values.length; i++) {
-          const thumbnail = yield findThumbnail(values[i]);
+    setBreeds: flow(function* () {
+      const result = yield axios(`https://dog.ceo/api/breeds/list/all`);
+      const breeds = Object.keys(result.data.message);
+      if (breeds) {
+        for (let i = 0; i < breeds.length; i++) {
+          const thumbnail = yield findThumbnail(breeds[i]);
           self.allBreeds.push({
-            name: values[i],
+            name: breeds[i],
             image: thumbnail,
           });
         }
       }
     }),
+  }))
+  .actions((self) => ({
+    afterCreate() {
+      self.setAreBreedNamesLoading(true);
+      self.setBreeds();
+      self.setAreBreedNamesLoading(false);
+    },
   }));
