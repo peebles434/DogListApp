@@ -47,11 +47,11 @@ export const BreedList = observer(() => {
     <div className={classes.root}>
       <List>
         {filteredBreeds.map((breed) => (
-          <ListItem button key={breed} onClick={clickHandler(breed)}>
+          <ListItem button key={breed.name} onClick={clickHandler(breed.name)}>
             <ListItemIcon>
-              <Thumbnail breed={breed} />
+              <Thumbnail breed={breed.name} />
             </ListItemIcon>
-            <h1>{capitalizedBreeds(breed)}</h1>
+            <h1>{capitalizedBreeds(breed.name)}</h1>
           </ListItem>
         ))}
       </List>
