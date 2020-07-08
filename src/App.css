@@ -1,0 +1,10 @@
+.app {
+  overflow: auto;
+}
+
+.columns {
+  margin: 10px;
+  height: auto;
+  max-height: 600px;
+  overflow: auto;
+}
