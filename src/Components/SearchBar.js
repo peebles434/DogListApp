@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { useMainStore } from "../Stores/hooks";
 
 export const SearchBar = observer(() => {
-  const { text, searchHandler } = useMainStore();
+  const { searchHandler } = useMainStore();
 
   return (
     <div>
@@ -13,7 +13,6 @@ export const SearchBar = observer(() => {
             type="text"
             className="form-control"
             placeholder="Search Breeds"
-            value={text}
             onChange={(e) => searchHandler(e.target.value)}
             autoFocus
           />

@@ -12,12 +12,12 @@ export const PictureColumn = observer(() => {
     const fetchItems = async () => {
       if (currentBreed.length > 0) {
         setIsPicColumnLoading(true);
+        const result = await axios(
+          `https://dog.ceo/api/breed/${currentBreed}/images`
+        );
+        setPictures(result.data.message);
+        setIsPicColumnLoading(false);
       }
-      const result = await axios(
-        `https://dog.ceo/api/breed/${currentBreed}/images`
-      );
-      setPictures(result.data.message);
-      setIsPicColumnLoading(false);
     };
     fetchItems();
   }, [currentBreed]);

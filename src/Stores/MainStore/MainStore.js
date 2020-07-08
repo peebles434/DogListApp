@@ -4,7 +4,6 @@ import { MAIN_STORE } from "../constants";
 export const MainStore = types
   .model(MAIN_STORE, {
     searchText: types.optional(types.string, ""),
-    query: types.optional(types.string, ""),
     areBreedNamesLoading: types.optional(types.boolean, true),
     isPicColumnLoading: types.optional(types.boolean, false),
     currentBreed: types.optional(types.string, ""),
@@ -26,7 +25,6 @@ export const MainStore = types
   .actions((self) => ({
     searchHandler(value) {
       self.searchText = value;
-      self.query = value;
     },
     breedClickHandler(value) {
       self.currentBreed = value;

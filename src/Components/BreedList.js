@@ -1,6 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
 import { useMainStore } from "../Stores/hooks";
+import { useSessionStore } from "../Stores/hooks";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { Thumbnail } from "./Thumbnail";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,14 +21,20 @@ const useStyles = makeStyles((theme) => ({
 
 export const BreedList = observer(() => {
   const classes = useStyles();
+  const history = useHistory();
   const {
     areBreedNamesLoading,
     breedClickHandler,
     filteredBreeds,
   } = useMainStore();
 
+  const { isMobileModeOn } = useSessionStore();
+
   const clickHandler = (breed) => (event) => {
     breedClickHandler(breed);
+    if (isMobileModeOn) {
+      history.push("/pictures");
+    }
   };
 
   const capitalizedBreeds = (breed) => {

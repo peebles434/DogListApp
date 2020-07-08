@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
 import { useMainStore } from "../Stores/hooks";
@@ -7,7 +7,7 @@ import { PictureColumn } from "./PictureColumn";
 import { Grid } from "@material-ui/core";
 
 export const DogListApp = observer(() => {
-  const { setAreBreedNamesLoading, setBreeds, query } = useMainStore();
+  const { setAreBreedNamesLoading, setBreeds } = useMainStore();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -17,7 +17,7 @@ export const DogListApp = observer(() => {
       setAreBreedNamesLoading(false);
     };
     fetchItems();
-  }, [query]);
+  }, []);
 
   return (
     <div>

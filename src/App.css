@@ -17,6 +17,7 @@ input[type="text"] {
   border-radius: 5px;
   width: 60%;
   margin: auto;
+  margin-top: 10px;
 }
 
 .pictures {
@@ -37,4 +38,12 @@ h1 {
 
 .picSpinner {
   margin: 30px auto;
+}
+
+.picContainer {
+  text-align: center;
+}
+
+.mobileBackButton {
+  margin: 5px 5px;
 }
