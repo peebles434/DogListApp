@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
+import { Avatar } from "@material-ui/core";
 
 export const Thumbnail = observer((breed) => {
   const [thumbnailPic, setThumbnailPic] = useState("");
@@ -17,7 +18,7 @@ export const Thumbnail = observer((breed) => {
 
   return (
     <div>
-      <img src={thumbnailPic} alt="" className="thumbnail" />
+      <Avatar src={thumbnailPic} alt="" className="thumbnail" />
     </div>
   );
 });

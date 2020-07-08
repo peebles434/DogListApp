@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
+import InfoIcon from "@material-ui/icons/Info";
 
 const useStyles = makeStyles({
   list: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 });
 
 export const NavMenu = () => {
-  const { setMobileMode } = useSessionStore();
+  const { isMobileModeOn } = useSessionStore();
 
   const classes = useStyles();
   const history = useHistory();
@@ -33,8 +34,7 @@ export const NavMenu = () => {
   });
 
   const homeClickHandler = () => {
-    history.push("/");
-    setMobileMode(false);
+    isMobileModeOn ? history.push("/mobile") : history.push("/");
   };
 
   const aboutClickHandler = () => {
@@ -70,7 +70,7 @@ export const NavMenu = () => {
         </ListItem>
         <ListItem button key="About" onClick={aboutClickHandler}>
           <ListItemIcon>
-            <HomeIcon />
+            <InfoIcon />
           </ListItemIcon>
           <ListItemText primary="About" />
         </ListItem>
