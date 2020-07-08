@@ -19,7 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const BreedList = observer(() => {
   const classes = useStyles();
-  const { areBreedNamesLoading, breedClickHandler, allBreeds } = useMainStore();
+  const {
+    areBreedNamesLoading,
+    breedClickHandler,
+    filteredBreeds,
+  } = useMainStore();
 
   const clickHandler = (breed) => (event) => {
     breedClickHandler(breed);
@@ -34,7 +38,7 @@ export const BreedList = observer(() => {
   ) : (
     <div className={classes.root}>
       <List>
-        {allBreeds.map((breed) => (
+        {filteredBreeds.map((breed) => (
           <ListItem button key={breed} onClick={clickHandler(breed)}>
             <ListItemIcon>
               <Thumbnail breed={breed} />

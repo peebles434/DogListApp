@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Header = observer(() => {
   const classes = useStyles();
-  const { toggleMobileMode } = useSessionStore();
+  const { toggleMobileMode, isMobileModeOn } = useSessionStore();
 
   const clickHandler = () => {
     toggleMobileMode();
@@ -45,7 +45,10 @@ export const Header = observer(() => {
         <Typography variant="h6" className={classes.title}>
           Dog Breed App
         </Typography>
-        <Button color="inherit" onClick={clickHandler}>
+        <Button
+          color={isMobileModeOn ? "secondary" : "inherit"}
+          onClick={clickHandler}
+        >
           Mobile Mode
         </Button>
       </Toolbar>

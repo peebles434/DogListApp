@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
 import { useMainStore } from "../Stores/hooks";
-import { Header } from "./Header";
 import { ListColumn } from "./ListColumn";
 import { PictureColumn } from "./PictureColumn";
 import { Grid } from "@material-ui/core";

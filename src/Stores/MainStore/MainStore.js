@@ -12,7 +12,17 @@ export const MainStore = types
     allBreeds: types.optional(types.array(types.string), []),
   })
   .volatile((self) => ({}))
-  .views((self) => ({}))
+  .views((self) => ({
+    get filteredBreeds() {
+      if (self.searchText.length > 0) {
+        return self.allBreeds.filter((breed) =>
+          breed.includes(self.searchText.toLowerCase())
+        );
+      } else {
+        return self.allBreeds;
+      }
+    },
+  }))
   .actions((self) => ({
     searchHandler(value) {
       self.searchText = value;

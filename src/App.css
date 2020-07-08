@@ -3,9 +3,9 @@
 }
 
 .columns {
-  margin: 10px;
-  height: 600px;
-  max-height: 600px;
+  margin: 10px 10px 0px 10px;
+  height: 88vh;
+  max-height: 88vh;
   overflow: auto;
 }
 
