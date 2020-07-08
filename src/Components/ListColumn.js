@@ -1,34 +1,16 @@
 import React from "react";
+import { observer } from "mobx-react";
+import { SearchBar } from "./SearchBar";
+import { BreedList } from "./BreedList";
 import { Paper } from "@material-ui/core";
 
-export const ListColumn = () => {
+export const ListColumn = observer(({ breeds }) => {
   return (
     <div>
       <Paper className="columns">
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
-        <h1>Hi</h1>
+        <SearchBar />
+        <BreedList breeds={breeds} />
       </Paper>
     </div>
   );
-};
+});
