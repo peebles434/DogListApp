@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
 import { useMainStore } from "../Stores/hooks";
+import { PictureList } from "./PictureList";
 import { Paper, Grid } from "@material-ui/core";
 
 export const PictureColumn = observer(() => {
-  const {
-    currentBreed,
-    setIsPicColumnLoading,
-    pictures,
-    setPictures,
-  } = useMainStore();
+  const { currentBreed, setIsPicColumnLoading, setPictures } = useMainStore();
 
   useEffect(() => {
     const fetchItems = async () => {
-      setIsPicColumnLoading(true);
+      if (currentBreed.length > 0) {
+        setIsPicColumnLoading(true);
+      }
       const result = await axios(
         `https://dog.ceo/api/breed/${currentBreed}/images`
       );
@@ -27,11 +25,7 @@ export const PictureColumn = observer(() => {
   return (
     <div>
       <Paper className="columns">
-        <Grid container>
-          {pictures.map((picture) => (
-            <img src={picture} alt="" key={picture} className="pictures" />
-          ))}
-        </Grid>
+        <PictureList />
       </Paper>
     </div>
   );

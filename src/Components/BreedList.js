@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
 
 export const BreedList = observer(() => {
   const classes = useStyles();
-  const { isLoading, breedClickHandler, allBreeds } = useMainStore();
+  const { isListColumnLoading, breedClickHandler, allBreeds } = useMainStore();
 
   const clickHandler = (breed) => (event) => {
     breedClickHandler(breed);
   };
 
-  return isLoading ? (
+  return isListColumnLoading ? (
     <LoadingSpinner />
   ) : (
     <div className={classes.root}>
@@ -36,7 +35,7 @@ export const BreedList = observer(() => {
             <ListItemIcon>
               <Thumbnail breed={breed} />
             </ListItemIcon>
-            <h1>{breed}</h1>
+            <h1>{breed.charAt(0).toUpperCase() + breed.slice(1)}</h1>
           </ListItem>
         ))}
       </List>
