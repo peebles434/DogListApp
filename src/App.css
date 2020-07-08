@@ -21,4 +21,16 @@ input[type="text"] {
 
 .pictures {
   height: 200px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.thumbnail {
+  height: 125px;
+  width: 125px;
+  object-fit: cover;
+}
+
+h1 {
+  margin-left: 10px;
 }

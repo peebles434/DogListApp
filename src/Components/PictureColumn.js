@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
 import { useMainStore } from "../Stores/hooks";
-import { Paper } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 
 export const PictureColumn = observer(() => {
   const {
@@ -27,9 +27,11 @@ export const PictureColumn = observer(() => {
   return (
     <div>
       <Paper className="columns">
-        {pictures.map((picture) => (
-          <img src={picture} alt="" key={picture} className="pictures" />
-        ))}
+        <Grid container>
+          {pictures.map((picture) => (
+            <img src={picture} alt="" key={picture} className="pictures" />
+          ))}
+        </Grid>
       </Paper>
     </div>
   );

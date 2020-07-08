@@ -8,15 +8,13 @@ import { PictureColumn } from "./PictureColumn";
 import { Grid } from "@material-ui/core";
 
 export const DogListApp = observer(() => {
-  const { setIsListColumnLoading, query, breeds, setBreeds } = useMainStore();
+  const { setIsListColumnLoading, setBreeds, query } = useMainStore();
 
   useEffect(() => {
     const fetchItems = async () => {
       setIsListColumnLoading(true);
-      const breedsResult = await axios(
-        `https://dog.ceo/api/breeds/list/all?=${query}`
-      );
-      setBreeds(Object.keys(breedsResult.data.message));
+      const result = await axios(`https://dog.ceo/api/breeds/list/all`);
+      setBreeds(Object.keys(result.data.message));
       setIsListColumnLoading(false);
     };
     fetchItems();
