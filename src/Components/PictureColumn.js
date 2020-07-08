@@ -20,7 +20,7 @@ export const PictureColumn = observer(() => {
       }
     };
     fetchItems();
-  }, [currentBreed]);
+  }, [currentBreed, setIsPicColumnLoading, setPictures]);
 
   return (
     <div>
