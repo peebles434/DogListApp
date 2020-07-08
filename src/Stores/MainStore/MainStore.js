@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, flow } from "mobx-state-tree";
 import { MAIN_STORE } from "../constants";
 import { BreedModel } from "../../Models/BreedModel/BreedModel";
 import { findThumbnail } from "../../Logic/findThumbNail";
@@ -40,14 +40,15 @@ export const MainStore = types
     setPictures(value) {
       self.pictures = value;
     },
-    setBreeds(values) {
+    setBreeds: flow(function* (values) {
       if (values) {
         for (let i = 0; i < values.length; i++) {
+          const thumbnail = yield findThumbnail(values[i]);
           self.allBreeds.push({
             name: values[i],
-            image: findThumbnail(values[i]),
+            image: thumbnail,
           });
         }
       }
-    },
+    }),
   }));

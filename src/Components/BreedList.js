@@ -49,7 +49,7 @@ export const BreedList = observer(() => {
         {filteredBreeds.map((breed) => (
           <ListItem button key={breed.name} onClick={clickHandler(breed.name)}>
             <ListItemIcon>
-              <Thumbnail breed={breed.name} />
+              <Thumbnail image={breed.image} />
             </ListItemIcon>
             <h1>{capitalizedBreeds(breed.name)}</h1>
           </ListItem>
