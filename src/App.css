@@ -51,3 +51,11 @@ h1 {
 .darkSwitchContainer {
   justify-content: center;
 }
+
+.MuiGrid-spacing-xs-1 {
+  width: calc(100%) !important;
+}
+
+.MuiTypography-body1 {
+  height: 10px !important;
+}
