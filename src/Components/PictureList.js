@@ -7,7 +7,9 @@ import { LoadingSpinner } from "./LoadingSpinner";
 export const PictureList = observer(() => {
   const { pictures, isPicColumnLoading } = useMainStore();
   return isPicColumnLoading ? (
-    <LoadingSpinner />
+    <div className="picSpinner">
+      <LoadingSpinner />
+    </div>
   ) : (
     <div>
       <Grid container>

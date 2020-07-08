@@ -34,3 +34,7 @@ input[type="text"] {
 h1 {
   margin-left: 10px;
 }
+
+.picSpinner {
+  margin: 30px auto;
+}

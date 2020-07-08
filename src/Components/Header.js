@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { useSessionStore } from "../Stores/hooks";
 import {
   makeStyles,
   AppBar,
@@ -24,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Header = observer(() => {
   const classes = useStyles();
+  const { toggleMobileMode } = useSessionStore();
+
+  const clickHandler = () => {
+    toggleMobileMode();
+  };
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -38,7 +45,9 @@ export const Header = observer(() => {
         <Typography variant="h6" className={classes.title}>
           Dog Breed App
         </Typography>
-        <Button color="inherit">Mobile Mode</Button>
+        <Button color="inherit" onClick={clickHandler}>
+          Mobile Mode
+        </Button>
       </Toolbar>
     </AppBar>
   );

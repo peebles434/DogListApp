@@ -5,7 +5,7 @@ export const MainStore = types
   .model(MAIN_STORE, {
     searchText: types.optional(types.string, ""),
     query: types.optional(types.string, ""),
-    isListColumnLoading: types.optional(types.boolean, true),
+    areBreedNamesLoading: types.optional(types.boolean, true),
     isPicColumnLoading: types.optional(types.boolean, false),
     currentBreed: types.optional(types.string, ""),
     pictures: types.optional(types.array(types.string), []),
@@ -21,8 +21,8 @@ export const MainStore = types
     breedClickHandler(value) {
       self.currentBreed = value;
     },
-    setIsListColumnLoading(value) {
-      self.isListColumnLoading = value;
+    setAreBreedNamesLoading(value) {
+      self.areBreedNamesLoading = value;
     },
     setIsPicColumnLoading(value) {
       self.isPicColumnLoading = value;

@@ -19,13 +19,17 @@ const useStyles = makeStyles((theme) => ({
 
 export const BreedList = observer(() => {
   const classes = useStyles();
-  const { isListColumnLoading, breedClickHandler, allBreeds } = useMainStore();
+  const { areBreedNamesLoading, breedClickHandler, allBreeds } = useMainStore();
 
   const clickHandler = (breed) => (event) => {
     breedClickHandler(breed);
   };
 
-  return isListColumnLoading ? (
+  const capitalizedBreeds = (breed) => {
+    return breed.charAt(0).toUpperCase() + breed.slice(1);
+  };
+
+  return areBreedNamesLoading ? (
     <LoadingSpinner />
   ) : (
     <div className={classes.root}>
@@ -35,7 +39,7 @@ export const BreedList = observer(() => {
             <ListItemIcon>
               <Thumbnail breed={breed} />
             </ListItemIcon>
-            <h1>{breed.charAt(0).toUpperCase() + breed.slice(1)}</h1>
+            <h1>{capitalizedBreeds(breed)}</h1>
           </ListItem>
         ))}
       </List>
