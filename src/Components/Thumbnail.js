@@ -1,24 +1,12 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+
 import { observer } from "mobx-react";
 import { Avatar } from "@material-ui/core";
 
-export const Thumbnail = observer((breed) => {
-  const [thumbnailPic, setThumbnailPic] = useState("");
-
-  if (breed) {
-    const fetchItems = async () => {
-      const result = await axios(
-        `https://dog.ceo/api/breed/${breed.breed}/images`
-      );
-      setThumbnailPic(result.data.message[0]);
-    };
-    fetchItems();
-  }
-
+export const Thumbnail = observer((image) => {
   return (
     <div>
-      <Avatar src={thumbnailPic} alt="" className="thumbnail" />
+      <Avatar src={image.image} alt="" className="thumbnail" />
     </div>
   );
 });

@@ -1,24 +1,10 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { observer } from "mobx-react";
-import { useMainStore } from "../Stores/hooks";
 import { ListColumn } from "./ListColumn";
 import { PictureColumn } from "./PictureColumn";
 import { Grid } from "@material-ui/core";
 
 export const DogListApp = observer(() => {
-  const { setAreBreedNamesLoading, setBreeds } = useMainStore();
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      setAreBreedNamesLoading(true);
-      const result = await axios(`https://dog.ceo/api/breeds/list/all`);
-      setBreeds(Object.keys(result.data.message));
-      setAreBreedNamesLoading(false);
-    };
-    fetchItems();
-  }, []);
-
   return (
     <div>
       <Grid container>

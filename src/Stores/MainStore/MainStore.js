@@ -1,5 +1,8 @@
-import { types } from "mobx-state-tree";
+import { types, flow } from "mobx-state-tree";
 import { MAIN_STORE } from "../constants";
+import { BreedModel } from "../../Models/BreedModel/BreedModel";
+import { findThumbnail } from "../../Logic/findThumbNail";
+import axios from "axios";
 
 export const MainStore = types
   .model(MAIN_STORE, {
@@ -8,14 +11,14 @@ export const MainStore = types
     isPicColumnLoading: types.optional(types.boolean, false),
     currentBreed: types.optional(types.string, ""),
     pictures: types.optional(types.array(types.string), []),
-    allBreeds: types.optional(types.array(types.string), []),
+    allBreeds: types.array(BreedModel),
   })
   .volatile((self) => ({}))
   .views((self) => ({
     get filteredBreeds() {
       if (self.searchText.length > 0) {
         return self.allBreeds.filter((breed) =>
-          breed.includes(self.searchText.toLowerCase())
+          breed.name.includes(self.searchText.toLowerCase())
         );
       } else {
         return self.allBreeds;
@@ -38,7 +41,24 @@ export const MainStore = types
     setPictures(value) {
       self.pictures = value;
     },
-    setBreeds(value) {
-      self.allBreeds = value;
+    setBreeds: flow(function* () {
+      const result = yield axios(`https://dog.ceo/api/breeds/list/all`);
+      const breeds = Object.keys(result.data.message);
+      if (breeds) {
+        for (let i = 0; i < breeds.length; i++) {
+          const thumbnail = yield findThumbnail(breeds[i]);
+          self.allBreeds.push({
+            name: breeds[i],
+            image: thumbnail,
+          });
+        }
+      }
+    }),
+  }))
+  .actions((self) => ({
+    afterCreate() {
+      self.setAreBreedNamesLoading(true);
+      self.setBreeds();
+      self.setAreBreedNamesLoading(false);
     },
   }));
